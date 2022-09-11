@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/kexinqiu/Desktop/22Fall/5520/keystore/classkeystore')
+            storePassword 'qkx123'
+            keyAlias 'my_first_key'
+            keyPassword 'qkx123'
+        }
+    }
     compileSdk 32
 
     defaultConfig {
@@ -13,6 +21,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
