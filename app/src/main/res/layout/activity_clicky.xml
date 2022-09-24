@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Pressed:"
+        android:text="Pressed: -"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
