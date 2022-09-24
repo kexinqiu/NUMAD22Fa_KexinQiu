@@ -2,6 +2,7 @@ package edu.northeastern.numad22fa_kexinqiu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,15 +10,15 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn;
+    private Button btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn = (Button)findViewById(R.id.button01);
-
+        btn = (Button)findViewById(R.id.button01);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,5 +29,19 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
         });
+
+        Button btnClicky = (Button)findViewById(R.id.btnClicky);
+        btnClicky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Clicky();
+            }
+        });
     }
+
+    public void Clicky() {
+        Intent newActivity = new Intent(MainActivity.this, ClickyActivity.class);
+        startActivity(newActivity);
+    }
+
 }
