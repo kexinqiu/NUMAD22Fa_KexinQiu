@@ -26,15 +26,15 @@ public class ClickyActivity extends AppCompatActivity{
         });
 
         Button btnB = (Button)findViewById(R.id.btnB);
-        btnA.setOnClickListener(new View.OnClickListener() {
+        btnB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pressed.setText("Pressed: A");
+                pressed.setText("Pressed: B");
             }
         });
 
         Button btnC = (Button)findViewById(R.id.btnC);
-        btnA.setOnClickListener(new View.OnClickListener() {
+        btnC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pressed.setText("Pressed: C");
@@ -42,7 +42,7 @@ public class ClickyActivity extends AppCompatActivity{
         });
 
         Button btnD = (Button)findViewById(R.id.btnD);
-        btnA.setOnClickListener(new View.OnClickListener() {
+        btnD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pressed.setText("Pressed: D");
@@ -50,7 +50,7 @@ public class ClickyActivity extends AppCompatActivity{
         });
 
         Button btnE = (Button)findViewById(R.id.btnE);
-        btnA.setOnClickListener(new View.OnClickListener() {
+        btnE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pressed.setText("Pressed: E");
@@ -58,7 +58,7 @@ public class ClickyActivity extends AppCompatActivity{
         });
 
         Button btnF = (Button)findViewById(R.id.btnF);
-        btnA.setOnClickListener(new View.OnClickListener() {
+        btnF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pressed.setText("Pressed: F");
