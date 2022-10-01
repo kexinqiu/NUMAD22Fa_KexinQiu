@@ -10,43 +10,58 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="20dp"
         android:text="Hello World!"
-        app:layout_constraintBottom_toTopOf="@+id/button01"
+        app:layout_constraintBottom_toTopOf="@+id/about_me_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button01"
+        android:id="@+id/about_me_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="149dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="150dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:onClick="onClick"
         android:text="About Me"
-        app:layout_constraintBottom_toTopOf="@+id/btnClicky"
+        app:layout_constraintBottom_toTopOf="@+id/clicky_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="OnClick" />
 
     <Button
-        android:id="@+id/btnClicky"
+        android:id="@+id/clicky_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="400dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="20dp"
         android:text="Clicky Clicky"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/link_collector_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button01"
-        app:layout_constraintVertical_bias="0.715" />
+        app:layout_constraintTop_toBottomOf="@+id/about_me_btn" />
+
+    <Button
+        android:id="@+id/link_collector_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="200dp"
+        android:text="Link Collector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clicky_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
