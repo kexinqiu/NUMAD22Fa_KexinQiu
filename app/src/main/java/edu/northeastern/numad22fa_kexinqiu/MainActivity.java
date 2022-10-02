@@ -11,7 +11,8 @@ public class MainActivity extends AppCompatActivity {
 
 //    private Button btn;
     private Button aboutMe_btn;
-    private Button btnClicky;
+    private Button clicky_btn;
+    private Button linkCollector_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //clicky
-        btnClicky = (Button)findViewById(R.id.clicky_btn);
-        btnClicky.setOnClickListener(new View.OnClickListener() {
+        clicky_btn = (Button)findViewById(R.id.clicky_btn);
+        clicky_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Clicky();
+            }
+        });
+
+        linkCollector_btn = (Button)findViewById(R.id.link_collector_btn);
+        linkCollector_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LinkCollector();
             }
         });
     }
@@ -56,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void Clicky() {
         Intent newActivity = new Intent(MainActivity.this, ClickyActivity.class);
+        startActivity(newActivity);
+    }
+
+    public void LinkCollector() {
+        Intent newActivity = new Intent(MainActivity.this, LinkCollectorActivity.class);
         startActivity(newActivity);
     }
 
