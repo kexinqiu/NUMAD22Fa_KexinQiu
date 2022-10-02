@@ -1,38 +1,37 @@
 package edu.northeastern.numad22fa_kexinqiu;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RViewAdapter extends RecyclerView.Adapter<RViewHolder> {
-    private List<LinkItem> list;
-    //private LinkClickListener listener;
 
-    public RViewAdapter(List<LinkItem> list) {
-        this.list = list;
+    private final ArrayList<LinkItem> itemList;
+
+    public RViewAdapter(ArrayList<LinkItem> itemList) {
+        this.itemList = itemList;
     }
 
     @Override
     public RViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_link_dialog, parent,false));
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.link_item, parent, false);
+        return new RViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RViewHolder holder, int position) {
-        // sets the name of the person to the name textview of the viewholder.
-        holder.linkName.setText(list.get(position).getItemName());
-        // sets the age of the person to the age textview of the viewholder.
-        holder.linkURL.setText(String.valueOf(list.get(position).getItemLink()));
+    public void onBindViewHolder(RViewHolder holder, int position) {
+        LinkItem currentItem = itemList.get(position);
+
+        holder.itemName.setText(currentItem.getItemName());
+        holder.itemURL.setText(currentItem.getItemURl());
     }
 
     @Override
     public int getItemCount() {
-        // Returns the size of the recyclerview that is the list of the arraylist.
-        return list.size();
+        return itemList.size();
     }
-
 }

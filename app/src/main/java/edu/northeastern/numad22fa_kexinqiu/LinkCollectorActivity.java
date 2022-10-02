@@ -1,124 +1,139 @@
 package edu.northeastern.numad22fa_kexinqiu;
 
-import android.os.Bundle;
-import android.view.View;
-
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-public class LinkCollectorActivity extends AppCompatActivity implements AddLinkFragment.AddItemFragmentListener {
 
-    private ArrayList<LinkItem> list= new ArrayList<>();
-    private FloatingActionButton add_fbtn;
+public class LinkCollectorActivity extends AppCompatActivity implements AddLinkItemFragment.AddLinkItemListener {
+    private ArrayList<LinkItem> itemList = new ArrayList<>();
+    private FloatingActionButton addItem_btn;
 
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private RViewAdapter rviewAdapter;
+    private RViewAdapter rViewAdapter;
+    private RecyclerView.LayoutManager rLayoutManger;
 
-    private static final String LINK_KEY = "LINK_KEY";
-    private static final String NUMBER_OF_LINKS = "NUMBER_OF_LINKS";
+    private static final String ITEM_KEY = "ITEM_KEY";
+    private static final String ITEMS_SIZE = "ITEMS_SIZE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_link_collector);
 
-        add_fbtn = findViewById(R.id.addItem_fbtn);
-        add_fbtn.setOnClickListener(new View.OnClickListener() {
+        initialItemData(savedInstanceState);
+        createRecyclerView();
+
+        addItem_btn = findViewById(R.id.add_linkitem_btn);
+        addItem_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addLinkDialog();
+                addLinkItemDialog();
             }
         });
 
+        //Specify what action a specific gesture performs, in this case swiping right or left deletes the entry
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
             @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                Snackbar.make(recyclerView, "Delete",
-                        Snackbar.LENGTH_SHORT)
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                Snackbar.make(recyclerView, "Removed linkItem",
+                                Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 int position = viewHolder.getLayoutPosition();
-                list.remove(position);
+                itemList.remove(position);
 
-                rviewAdapter.notifyItemRemoved(position);
+                rViewAdapter.notifyItemRemoved(position);
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
-    public void addLinkDialog() {
-        AddLinkFragment linkDialog = new AddLinkFragment();
-        linkDialog.show(getSupportFragmentManager(), "add link dialog");
+    public void addLinkItemDialog() {
+        AddLinkItemFragment addLinkItemFragment = new AddLinkItemFragment();
+        addLinkItemFragment.show(getSupportFragmentManager(), "Enter Name and URL:");
     }
 
-    private void init(Bundle savedInstanceState) {
-        initialData(savedInstanceState);
-        createRecyclerView();
+    @Override
+    public void setInput(String name, String url) {
+        if (isValidURL(url)) {
+            addItem(0, name, url);
+        } else {
+            Snackbar.make(recyclerView, "Invalid URL. Please try again.",
+                            Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
     }
 
-    private void initialData(Bundle savedInstanceState) {
-        if (savedInstanceState != null && savedInstanceState.containsKey(NUMBER_OF_LINKS)) {
-            if (list == null || list.size() == 0) {
-                int size = savedInstanceState.getInt(NUMBER_OF_LINKS);
+    private boolean isValidURL(String url) {
+        return Patterns.WEB_URL.matcher(url).matches();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        int size = itemList == null ? 0 : itemList.size();
+        outState.putInt(ITEMS_SIZE, size);
+
+        for (int i = 0; i < size; i++) {
+            outState.putString(ITEM_KEY + i + "1", itemList.get(i).getItemName());
+            outState.putString(ITEM_KEY + i + "2", itemList.get(i).getItemURl());
+        }
+        super.onSaveInstanceState(outState);
+    }
+
+    private void initialItemData(Bundle savedInstanceState) {
+
+        if (savedInstanceState != null && savedInstanceState.containsKey(ITEMS_SIZE)) {
+            if (itemList == null || itemList.size() == 0) {
+
+                int size = savedInstanceState.getInt(ITEMS_SIZE);
 
                 for (int i = 0; i < size; i++) {
-                    String linkName = savedInstanceState.getString(LINK_KEY + i + "1");
-                    String linkURL = savedInstanceState.getString(LINK_KEY + i + "2");
-                    list.add(new LinkItem(linkName, linkURL));
+
+                    String itemName = savedInstanceState.getString(ITEM_KEY + i + "1");
+                    String itemURL= savedInstanceState.getString(ITEM_KEY + i + "2");
+
+                    LinkItem linkItem = new LinkItem(itemName, itemURL);
+
+                    itemList.add(linkItem);
                 }
             }
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        int size = list == null ? 0 : list.size();
-        outState.putInt(NUMBER_OF_LINKS, size);
-
-        for (int i = 0; i < size; i++) {
-            outState.putString(LINK_KEY + i + "1", list.get(i).getItemLink());
-            outState.putString(LINK_KEY + i + "2", list.get(i).getItemLink());
-        }
-
-        super.onSaveInstanceState(outState);
-    }
-
     private void createRecyclerView() {
-        layoutManager = new LinearLayoutManager(this);
 
-        recyclerView = findViewById(R.id.link_collector_rv);
+        rLayoutManger = new LinearLayoutManager(this);
+
+        recyclerView = findViewById(R.id.link_recycler_view);
         recyclerView.setHasFixedSize(true);
 
-        rviewAdapter = new RViewAdapter(list);
+        rViewAdapter = new RViewAdapter(itemList);
 
-        recyclerView.setAdapter(rviewAdapter);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(rViewAdapter);
+        recyclerView.setLayoutManager(rLayoutManger);
     }
 
-    private void addItem(int pos, String name, String url) {
-        list.add(pos, new LinkItem(name, url));
-        Snackbar.make(recyclerView, "Url: " + url + " registered", Snackbar.LENGTH_LONG)
+    private void addItem(int position, String name, String url) {
+        itemList.add(position, new LinkItem(name, url));
+        Snackbar.make(recyclerView, "Url: " + url + " registered",
+                        Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-
-        rviewAdapter.notifyItemInserted(pos);
-    }
-
-    @Override
-    public void saveInputLink(String name, String url){
-
+        rViewAdapter.notifyItemInserted(position);
     }
 }

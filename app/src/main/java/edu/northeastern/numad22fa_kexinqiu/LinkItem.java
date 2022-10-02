@@ -2,20 +2,21 @@ package edu.northeastern.numad22fa_kexinqiu;
 
 public class LinkItem {
 
-    private String itemName;
-    private String itemLink;
+    private final String itemName;
+    private final String itemURL;
 
-    public LinkItem(String itemName, String itemLink) {
+    //Constructor
+    public LinkItem(String itemName, String itemDesc) {
         this.itemName = itemName;
-        this.itemLink = itemLink;
+        this.itemURL = itemDesc;
+    }
+
+    //Getters for the imageSource, itemName and itemDesc
+    public String getItemURl() {
+        return itemURL;
     }
 
     public String getItemName() {
         return itemName;
     }
-
-    public String getItemLink() {
-        return itemLink;
-    }
-
 }
