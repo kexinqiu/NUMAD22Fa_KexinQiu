@@ -43,7 +43,6 @@ public class LinkCollectorActivity extends AppCompatActivity implements AddLinkI
             }
         });
 
-        //Specify what action a specific gesture performs, in this case swiping right or left deletes the entry
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -52,7 +51,7 @@ public class LinkCollectorActivity extends AppCompatActivity implements AddLinkI
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                Snackbar.make(recyclerView, "Removed linkItem",
+                Snackbar.make(recyclerView, "Removed Link",
                                 Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 int position = viewHolder.getLayoutPosition();
@@ -74,7 +73,7 @@ public class LinkCollectorActivity extends AppCompatActivity implements AddLinkI
         if (isValidURL(url)) {
             addItem(0, name, url);
         } else {
-            Snackbar.make(recyclerView, "Invalid URL. Please try again.",
+            Snackbar.make(recyclerView, "Invalid URL.",
                             Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
@@ -131,7 +130,7 @@ public class LinkCollectorActivity extends AppCompatActivity implements AddLinkI
 
     private void addItem(int position, String name, String url) {
         itemList.add(position, new LinkItem(name, url));
-        Snackbar.make(recyclerView, "Url: " + url + " registered",
+        Snackbar.make(recyclerView, "Link " + name + " added successfully!",
                         Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         rViewAdapter.notifyItemInserted(position);

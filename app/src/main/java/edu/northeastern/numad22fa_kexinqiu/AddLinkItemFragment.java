@@ -30,14 +30,14 @@ public class AddLinkItemFragment extends AppCompatDialogFragment {
         itemUrl = view.findViewById(R.id.input_url);
 
         builder.setView(view)
-                .setTitle("Enter Name and Url")
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setTitle("Enter Name and URL")
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 })
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String name = itemName.getText().toString();
@@ -60,7 +60,7 @@ public class AddLinkItemFragment extends AppCompatDialogFragment {
         try {
             listener = (AddLinkItemListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "Must implement EnterUrlListner");
+            throw new ClassCastException(context.toString());
         }
     }
 }

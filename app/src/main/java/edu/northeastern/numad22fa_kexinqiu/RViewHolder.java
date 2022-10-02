@@ -19,9 +19,8 @@ public class RViewHolder extends RecyclerView.ViewHolder {
         itemURL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = itemURL.getText().toString();
-
-                url = "http://" + url;
+                String url = "http://";
+                url = url + itemURL.getText().toString();
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
