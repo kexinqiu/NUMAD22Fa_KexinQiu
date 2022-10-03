@@ -43,6 +43,12 @@ public class LinkCollectorActivity extends AppCompatActivity implements AddLinkI
             }
         });
 
+        swipedToDelete();
+
+    }
+
+    private void swipedToDelete() {
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
