@@ -87,10 +87,8 @@ public class FindPrimesActivity extends AppCompatActivity {
                                 lastPrime.setText(Integer.toString(finalCurPrime));
                             }
                         });
-                        //Log.d(TAG, "Running on a different thread using Runnable Interface: " + i);
-
                         try {
-                            Thread.sleep(200); //Makes the thread sleep or be inactive for 10 seconds
+                            Thread.sleep(300); //Makes the thread sleep or be inactive for 3 seconds
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
