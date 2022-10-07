@@ -13,23 +13,12 @@ public class MainActivity extends AppCompatActivity {
     private Button aboutMe_btn;
     private Button clicky_btn;
     private Button linkCollector_btn;
+    private Button primes_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        btn = (Button)findViewById(R.id.about_me_btn);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(),
-//                               "Name: Kexin Qiu" +
-//                                       "\nEmail: qiu.ke@northeastern.edu",
-//                                Toast.LENGTH_LONG)
-//                        .show();
-//            }
-//        });
 
         //aboutme
         aboutMe_btn = (Button)findViewById(R.id.about_me_btn);
@@ -56,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
                 LinkCollector();
             }
         });
+
+        primes_btn = (Button)findViewById(R.id.primes_btn);
+        primes_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FindPrimes();
+            }
+        });
+
     }
 
     public void AboutMe() {
@@ -70,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void LinkCollector() {
         Intent newActivity = new Intent(MainActivity.this, LinkCollectorActivity.class);
+        startActivity(newActivity);
+    }
+
+    public void FindPrimes() {
+        Intent newActivity = new Intent(MainActivity.this, FindPrimesActivity.class);
         startActivity(newActivity);
     }
 

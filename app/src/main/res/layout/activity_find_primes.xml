@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/find_primes_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="141dp"
+        android:layout_marginBottom="31dp"
+        android:onClick="findPrimesStart"
+        android:text="Find Primes"
+        app:layout_constraintBottom_toTopOf="@+id/terminate_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/terminate_btn"
+        android:layout_width="138dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginEnd="146dp"
+        android:layout_marginBottom="500dp"
+        android:onClick="findPrimeEnd"
+        android:text="Terminate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/find_primes_btn" />
+
+    <TextView
+        android:id="@+id/last_prime_title"
+        android:layout_width="127dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="300dp"
+        android:text="Last prime found :"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/last_prime_num"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_mun_title" />
+
+    <TextView
+        android:id="@+id/current_num"
+        android:layout_width="66dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="100dp"
+        android:text="-"
+        app:layout_constraintBottom_toTopOf="@+id/last_prime_num"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/current_mun_title"
+        app:layout_constraintTop_toBottomOf="@+id/terminate_btn" />
+
+    <TextView
+        android:id="@+id/last_prime_num"
+        android:layout_width="66dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="300dp"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/last_prime_title"
+        app:layout_constraintTop_toBottomOf="@+id/current_num" />
+
+    <TextView
+        android:id="@+id/current_mun_title"
+        android:layout_width="127dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:text="Current number :"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/last_prime_title"
+        app:layout_constraintEnd_toStartOf="@+id/current_num"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/terminate_btn" />
+
+    <CheckBox
+        android:id="@+id/pacifier_switch_btn"
+        android:layout_width="156dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="211dp"
+        android:text="Pacifier Switch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/terminate_btn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

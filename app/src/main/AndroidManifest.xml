@@ -25,17 +25,22 @@
 
         <activity
             android:name=".AboutMeActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
 
         <activity
             android:name=".ClickyActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
 
         <activity
             android:name=".LinkCollectorActivity"
-            android:exported="true">
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".FindPrimesActivity"
+            android:exported="false">
         </activity>
     </application>
 
