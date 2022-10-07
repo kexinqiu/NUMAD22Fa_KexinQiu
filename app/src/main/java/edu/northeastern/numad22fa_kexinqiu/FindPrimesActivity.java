@@ -52,13 +52,11 @@ public class FindPrimesActivity extends AppCompatActivity {
             Snackbar.make(view, end, Snackbar.LENGTH_LONG).show();
         }
 
-
         @Override
         public void onBackPressed() {
             // super.onBackPressed();
-
             if (findStarted) {
-                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.home), back, Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), back, Snackbar.LENGTH_LONG);
                 snackbar.setAction("Yes", v -> {
                     snackbar.dismiss();
                     finish();
@@ -69,13 +67,11 @@ public class FindPrimesActivity extends AppCompatActivity {
             }
         }
 
-
     //Class which implements the Runnable interface.
         class RunnableThread implements Runnable {
 
             @Override
             public void run() {
-
                 while(findStarted) {
                         if (checkPrimes(num)) {
                             currPrime = num;
@@ -100,11 +96,7 @@ public class FindPrimesActivity extends AppCompatActivity {
                         }
                         num = num + 2;
                 }
-
-
             }
-
-
 
             private boolean checkPrimes(int n) {
                 for (int i = 2; i < n; i++) {
@@ -115,5 +107,4 @@ public class FindPrimesActivity extends AppCompatActivity {
                 return true;
             }
         }
-
     }
