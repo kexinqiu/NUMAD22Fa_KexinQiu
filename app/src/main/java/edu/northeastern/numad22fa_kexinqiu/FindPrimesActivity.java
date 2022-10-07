@@ -53,6 +53,23 @@ public class FindPrimesActivity extends AppCompatActivity {
         }
 
 
+        @Override
+        public void onBackPressed() {
+            // super.onBackPressed();
+
+            if (findStarted) {
+                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.home), back, Snackbar.LENGTH_LONG);
+                snackbar.setAction("Yes", v -> {
+                    snackbar.dismiss();
+                    finish();
+                });
+                snackbar.show();
+            } else {
+                finish();
+            }
+        }
+
+
     //Class which implements the Runnable interface.
         class RunnableThread implements Runnable {
 
