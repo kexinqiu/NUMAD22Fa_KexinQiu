@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Location() {
-        Intent newActivity = new Intent(MainActivity.this, FindPrimesActivity.class);
+        Intent newActivity = new Intent(MainActivity.this, LocationActivity.class);
         startActivity(newActivity);
     }
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="edu.northeastern.numad22fa_kexinqiu">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -40,6 +41,11 @@
 
         <activity
             android:name=".FindPrimesActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".LocationActivity"
             android:exported="false">
         </activity>
     </application>
