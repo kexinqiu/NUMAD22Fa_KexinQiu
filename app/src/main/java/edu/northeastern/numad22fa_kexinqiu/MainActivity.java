@@ -3,6 +3,7 @@ package edu.northeastern.numad22fa_kexinqiu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button clicky_btn;
     private Button linkCollector_btn;
     private Button primes_btn;
+    private Button location_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        location_btn = (Button)findViewById(R.id.location_btn);
+        location_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Location();
+            }
+        });
     }
 
     public void AboutMe() {
@@ -72,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void FindPrimes() {
+        Intent newActivity = new Intent(MainActivity.this, FindPrimesActivity.class);
+        startActivity(newActivity);
+    }
+
+    public void Location() {
         Intent newActivity = new Intent(MainActivity.this, FindPrimesActivity.class);
         startActivity(newActivity);
     }
