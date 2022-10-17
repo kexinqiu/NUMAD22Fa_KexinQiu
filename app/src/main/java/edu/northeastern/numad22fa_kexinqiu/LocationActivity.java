@@ -30,9 +30,10 @@ public class LocationActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private String locationProvider = null;
 
-    public double[] startLocation;
-    private double[] endLocation;
-    private boolean flag = false;
+
+    public double[] fromLocation;
+    private double[] toLocation;
+    private boolean lock = false;
 
     public LocationListener locationListener = new LocationListener() {
         @Override
@@ -49,28 +50,28 @@ public class LocationActivity extends AppCompatActivity {
 
         @Override
         public void onLocationChanged(Location location) {
-            if (!flag) {
-                startLocation[0] = location.getLatitude();
-                startLocation[1] = location.getLongitude();
-                flag = true;
+            if (!lock) {
+                fromLocation[0] = location.getLatitude();
+                fromLocation[1] = location.getLongitude();
+                lock = true;
             }
             if (location != null) {
-                endLocation[0] = location.getLatitude();
-                endLocation[1] = location.getLongitude();
+                toLocation[0] = location.getLatitude();
+                toLocation[1] = location.getLongitude();
 
                 Location loc1 = new Location("");
-                loc1.setLatitude(startLocation[0]);
-                loc1.setLongitude(startLocation[1]);
+                loc1.setLatitude(fromLocation[0]);
+                loc1.setLongitude(fromLocation[1]);
 
                 Location loc2 = new Location("");
-                loc2.setLatitude(endLocation[0]);
-                loc2.setLongitude(endLocation[1]);
+                loc2.setLatitude(toLocation[0]);
+                loc2.setLongitude(toLocation[1]);
 
                 float distanceInMeters = loc1.distanceTo(loc2);
 
                 text_longitude.setText(String.valueOf(location.getLongitude()));
                 text_latitude.setText(String.valueOf(location.getLatitude()));
-                text_distance.setText(String.valueOf(distanceInMeters + " meters"));
+                text_distance.setText(String.valueOf(distanceInMeters + " Meters"));
             }
         }
     };
@@ -85,14 +86,16 @@ public class LocationActivity extends AppCompatActivity {
         text_distance = findViewById(R.id.textView_dist);
         reset_btn = findViewById(R.id.loc_reset_btn);
 
-        startLocation = new double[2];
-        endLocation = new double[2];
+        fromLocation = new double[2];
+        toLocation = new double[2];
 
         reset_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flag = false;
-            }
+                lock = false;
+
+                text_distance.setText("0.00 Meters");
+                }
         });
 
         //check
@@ -133,5 +136,7 @@ public class LocationActivity extends AppCompatActivity {
             }
         }
     };
+
+
 
 }
